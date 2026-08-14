@@ -78,11 +78,11 @@ DIVIDE(
     SUM('Sales in USD'[Ingresos Brutos USD])
 )
 
-## Beneficio Trimestral = CALCULATE(SUM('Sales in USD'[Ingresos Netos USD]), DATESQTD('Calendar'[Date]))
+* **Beneficio Trimestral = CALCULATE(SUM('Sales in USD'[Ingresos Netos USD]), DATESQTD('Calendar'[Date]))**
 
-## Beneficio YTD = TOTALYTD(SUM('Sales in USD'[Ingresos Netos USD]), 'Calendar'[Date])
+* **Beneficio YTD = TOTALYTD(SUM('Sales in USD'[Ingresos Netos USD]), 'Calendar'[Date])**
 
-## Mediana de Ventas = MEDIAN('Sales in USD'[Ingresos Brutos USD])
+* **Mediana de Ventas = MEDIAN('Sales in USD'[Ingresos Brutos USD])**
 
 ---
 
