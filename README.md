@@ -6,9 +6,10 @@ Transformar datos heterogéneos y desestructurados de ventas globales de *Tailwi
 ---
 
 ## 📂 Recursos del Proyecto
-* **Dataset Utilizado:** https://github.com/SebaaMayorga/Tailwind-traders-sales-analytics/blob/main/Data/Countries.xlsx.
-https://github.com/SebaaMayorga/Tailwind-traders-sales-analytics/blob/main/Data/Purchases.xlsx.
-https://github.com/SebaaMayorga/Tailwind-traders-sales-analytics/blob/main/Data/Tailwind-Traders-Sales.xlsx.
+* **Dataset Utilizado:** https://github.com/SebaaMayorga/Tailwind-traders-sales-analytics/blob/main/Data/Countries.xlsx
+* https://github.com/SebaaMayorga/Tailwind-traders-sales-analytics/blob/main/Data/Purchases.xlsx.
+* https://github.com/SebaaMayorga/Tailwind-traders-sales-analytics/blob/main/Data/Purchases.xlsx.
+
 
 * **Herramientas:** Power BI Desktop / Power Query / Python (Pandas) / DAX.
 * **Técnicas:** Limpieza e ingesta heterogénea, tipado estricto, script en Python para divisas, creación de tabla Calendario, modelado relacional 1:1 y 1:* y métricas avanzadas de Time Intelligence.
@@ -47,26 +48,26 @@ Siguiendo un enfoque de análisis de datos profesional, el reporte responde a:
 * **Integración de Divisas con Python:** Ejecución de un script con la librería `pandas` para ingerir dinámicamente las tasas de cambio históricas (USD, GBP, EUR, AED, AUD).
 
 python:
-import pandas as pd
-from io import StringIO
+import pandas as pd <br>
+from io import StringIO <br>
 
-data = """Exchange ID;ExchangeRate;Exchange Currency
-1;1;USD
-2;0.75;GBP
-3;0.85;EUR
-4;3.67;AED
-5;1.3;AUD"""
+data = """Exchange ID;ExchangeRate;Exchange Currency <br>
+1;1;USD <br>
+2;0.75;GBP <br>
+3;0.85;EUR <br>
+4;3.67;AED <br>
+5;1.3;AUD""" <br>
 
 df = pd.read_csv(StringIO(data), sep=';')
 
 ---
 
 # 2. Modelado de Datos Relacional
-Construcción de un esquema en estrella conectando las tablas Sales, Purchases, Countries, df (Exchange) y Sales in USD.
+* **Construcción de un esquema en estrella conectando las tablas Sales, Purchases, Countries, df (Exchange) y Sales in USD.**
 
-Tabla Dimensión Calendario: Creación de la tabla Calendar mediante DAX para análisis de Inteligencia de Tiempo (2020 - 2023).
+* **Tabla Dimensión Calendario: Creación de la tabla Calendar mediante DAX para análisis de Inteligencia de Tiempo (2020 - 2023).**
 
-Estandarización Multimoneda: Generación de la tabla calculada Sales in USD con la función RELATED para convertir las transacciones a una moneda homogénea.
+* **Estandarización Multimoneda: Generación de la tabla calculada Sales in USD con la función RELATED para convertir las transacciones a una moneda homogénea.**
 
 ---
 
@@ -77,11 +78,11 @@ DIVIDE(
     SUM('Sales in USD'[Ingresos Brutos USD])
 )
 
-Beneficio Trimestral = CALCULATE(SUM('Sales in USD'[Ingresos Netos USD]), DATESQTD('Calendar'[Date]))
+## Beneficio Trimestral = CALCULATE(SUM('Sales in USD'[Ingresos Netos USD]), DATESQTD('Calendar'[Date]))
 
-Beneficio YTD = TOTALYTD(SUM('Sales in USD'[Ingresos Netos USD]), 'Calendar'[Date])
+## Beneficio YTD = TOTALYTD(SUM('Sales in USD'[Ingresos Netos USD]), 'Calendar'[Date])
 
-Mediana de Ventas = MEDIAN('Sales in USD'[Ingresos Brutos USD])
+## Mediana de Ventas = MEDIAN('Sales in USD'[Ingresos Brutos USD])
 
 ---
 
